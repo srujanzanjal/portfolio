@@ -97,9 +97,9 @@ export default function Hero({ onOpenPalette }) {
   `}<span className="text-cyan">"role"</span>{`: `}<span className="text-flag">"CTF player / builder"</span>{`,
   `}<span className="text-cyan">"now"</span>{`: `}<span className="text-flag">"Intern @ Infocepts"</span>{`,
   `}<span className="text-cyan">"focus"</span>{`: [
-    `}<span className="text-ink">"security"</span>{`,
     `}<span className="text-ink">"AI/RAG"</span>{`,
-    `}<span className="text-ink">"full-stack"</span>{`
+    `}<span className="text-ink">"full-stack"</span>{`,
+    `}<span className="text-ink">"security"</span>{`
   ],
   `}<span className="text-cyan">"motto"</span>{`: `}<span className="text-flag">"break it, then build it right"</span>{`
 }`}
