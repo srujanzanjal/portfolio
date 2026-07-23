@@ -25,7 +25,7 @@ export default function Hero({ onOpenPalette }) {
         <ColorBends />
       </div>
       <motion.div style={{ y, opacity }} className="container-x relative z-10">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.15fr_.85fr]">
           {/* Left: identity */}
           <div>
             <motion.div
@@ -80,15 +80,47 @@ export default function Hero({ onOpenPalette }) {
             </div>
           </div>
 
-          {/* Right: gaze-tracking photo card — eyes follow the pointer */}
-          <motion.div
-            initial={{ opacity: 0, y: 24, rotateX: 8 }}
-            animate={{ opacity: 1, y: 0, rotateX: 0 }}
-            transition={{ delay: 0.35, duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-            style={{ perspective: 1000 }}
-          >
-            <GazeCard className="scanline mx-auto max-w-sm" />
-          </motion.div>
+          {/* Right: small gaze-tracking photo, terminal id card below */}
+          <div className="flex flex-col items-center gap-5">
+            <motion.div
+              initial={{ opacity: 0, y: 24, rotateX: 8 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              transition={{ delay: 0.3, duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
+              style={{ perspective: 1000 }}
+              className="w-full max-w-[220px]"
+            >
+              <GazeCard className="scanline" />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
+              className="term scanline w-full"
+            >
+              <div className="term-bar">
+                <div className="flex gap-2">
+                  <span className="dot bg-[#ff5f57]" />
+                  <span className="dot bg-[#febc2e]" />
+                  <span className="dot bg-[#28c840]" />
+                </div>
+                <span className="ml-2 font-mono text-sm text-ink-faint">~/id_srujan.json</span>
+              </div>
+              <pre className="whitespace-pre-wrap break-words p-5 font-mono text-sm leading-relaxed text-ink-mut">
+{`{
+  `}<span className="text-cyan">"handle"</span>{`: `}<span className="text-flag">"@srujanzanjal"</span>{`,
+  `}<span className="text-cyan">"role"</span>{`: `}<span className="text-flag">"CTF player / builder"</span>{`,
+  `}<span className="text-cyan">"now"</span>{`: `}<span className="text-flag">"Intern @ Infocepts"</span>{`,
+  `}<span className="text-cyan">"focus"</span>{`: [
+    `}<span className="text-ink">"AI/RAG"</span>{`,
+    `}<span className="text-ink">"full-stack"</span>{`,
+    `}<span className="text-ink">"security"</span>{`
+  ],
+  `}<span className="text-cyan">"motto"</span>{`: `}<span className="text-flag">"break it, then build it right"</span>{`
+}`}
+              </pre>
+            </motion.div>
+          </div>
         </div>
 
         {/* Stat HUD */}

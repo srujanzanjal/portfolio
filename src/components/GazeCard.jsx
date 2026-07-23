@@ -16,7 +16,7 @@ import { useEffect, useRef } from 'react'
  */
 const COLS = 3
 const ROWS = 3
-const SPRITE_SRC = '/face-sprite-placeholder.jpg' // swap for the real photo grid
+const SPRITE_SRC = '/face-sprite.jpg'
 
 export default function GazeCard({ className = '' }) {
   const cardRef = useRef(null)
@@ -47,7 +47,10 @@ export default function GazeCard({ className = '' }) {
       const rect = card.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top + rect.height / 2
-      const maxDist = Math.max(window.innerWidth, window.innerHeight) * 0.45
+      // Scaled to the card's own size (not viewport size) so the full gaze
+      // range is reachable regardless of where the card sits on the page —
+      // otherwise a card near a screen edge could never reach one extreme.
+      const maxDist = Math.max(rect.width, rect.height) * 1.1
 
       const dx = e.clientX - cx
       const dy = e.clientY - cy
@@ -82,7 +85,7 @@ export default function GazeCard({ className = '' }) {
           <span className="dot bg-[#febc2e]" />
           <span className="dot bg-[#28c840]" />
         </div>
-        <span className="ml-2 font-mono text-sm text-ink-faint">~/looking_at_you.png</span>
+        <span className="ml-2 min-w-0 truncate font-mono text-sm text-ink-faint">~/looking_at_you.png</span>
       </div>
       <div className="relative aspect-[3/4] w-full overflow-hidden">
         <div
