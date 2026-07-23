@@ -39,7 +39,7 @@ export default function Flags() {
   const current = active === null ? null : shown[active]
 
   return (
-    <Section id="flags" index="03" command="flags --captured --sort=prestige" title="Flags captured" subtitle="Wins & Achievements">
+    <Section id="flags" index="03" command="podium --sort=prestige" title="Podium Finishes" subtitle="Wins & Achievements">
       <Reveal>
         <div className="mb-8 flex flex-wrap items-center gap-4">
           <p className="max-w-2xl text-base leading-relaxed text-ink-mut">
@@ -59,7 +59,7 @@ export default function Flags() {
                 cat === c ? 'bg-cyan/15 text-cyan ring-1 ring-cyan/30' : 'text-ink-mut hover:text-ink'
               }`}
             >
-              {c === 'CP' ? 'CP' : c}
+              {c === 'CP' ? 'Competitive Programming' : c}
               <span className="ml-1.5 text-ink-faint">
                 {c === 'All' ? flags.length : flags.filter((f) => f.cat === c).length}
               </span>
@@ -68,7 +68,7 @@ export default function Flags() {
         </div>
       </Reveal>
 
-      <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         <AnimatePresence mode="popLayout">
           {shown.map((f, i) => {
             const s = placeStyle(f.place)
@@ -85,7 +85,7 @@ export default function Flags() {
                 className={`group ${f.cert ? 'cursor-pointer' : ''}`}
               >
                 {/* flip stage */}
-                <div className="relative h-72 sm:h-80 [perspective:1200px]">
+                <div className="relative h-48 [perspective:1200px] sm:h-52">
                   <div
                     className={`relative h-full w-full transition-transform duration-500 ease-out [transform-style:preserve-3d] ${
                       f.cert ? 'group-hover:[transform:rotateY(180deg)]' : ''
@@ -93,30 +93,23 @@ export default function Flags() {
                   >
                     {/* FRONT */}
                     <div
-                      className={`card absolute inset-0 overflow-hidden p-5 ring-1 ${s.ring} [backface-visibility:hidden]`}
+                      className={`card absolute inset-0 flex flex-col overflow-hidden p-4 ring-1 ${s.ring} [backface-visibility:hidden]`}
                     >
                       <div className="flex items-center justify-between">
-                        <span className={`font-mono text-3xl font-bold ${s.text} ${s.glow}`}>{f.place}</span>
-                        <span className="text-2xl" aria-hidden>{s.medal}</span>
+                        <span className={`font-mono text-xl font-bold ${s.text} ${s.glow}`}>{f.place}</span>
+                        <span className="text-lg" aria-hidden>{s.medal}</span>
                       </div>
-                      <h3 className="mt-3 text-base font-semibold leading-snug text-ink">{f.title}</h3>
-                      <p className="mt-1 text-sm text-ink-mut">{f.where}</p>
-                      <div className="mt-3 flex items-center justify-between gap-2">
-                        <span className="rounded border border-base-700 bg-base-900/60 px-2 py-0.5 font-mono text-xs uppercase tracking-wider text-ink-faint">
+                      <h3 className="mt-2 line-clamp-2 text-sm font-semibold leading-snug text-ink">{f.title}</h3>
+                      <p className="mt-1 truncate text-xs text-ink-mut">{f.where}</p>
+                      <div className="mt-auto flex items-center justify-between gap-2 pt-2">
+                        <span className="truncate rounded border border-base-700 bg-base-900/60 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-faint">
                           {CAT_LABEL[f.cat]}
                         </span>
-                        {f.date && <span className="font-mono text-xs text-ink-faint">{f.date}</span>}
+                        <span className="flex flex-none items-center gap-1 font-mono text-[10px] text-ink-faint">
+                          {f.date}
+                          {f.cert && <span className="text-cyan/60">⟲</span>}
+                        </span>
                       </div>
-                      {f.note && (
-                        <p className="mt-3 border-t border-base-700/60 pt-3 font-mono text-xs italic text-ink-mut">
-                          “{f.note}”
-                        </p>
-                      )}
-                      {f.cert && (
-                        <div className="mt-3 flex items-center gap-1.5 font-mono text-xs text-cyan/70 transition group-hover:text-cyan">
-                          <span>⟲</span> hover to flip
-                        </div>
-                      )}
                     </div>
 
                     {/* BACK — certificate preview */}
@@ -129,10 +122,10 @@ export default function Flags() {
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-base-950/95 via-base-950/25 to-transparent" />
-                        <div className="absolute inset-x-0 bottom-0 p-4">
-                          <p className="text-sm font-semibold text-white">{f.title}</p>
-                          <p className="mt-1.5 flex items-center gap-1.5 font-mono text-xs text-cyan">
-                            <span>⤢</span> click to enlarge
+                        <div className="absolute inset-x-0 bottom-0 p-3">
+                          <p className="truncate text-xs font-semibold text-white">{f.title}</p>
+                          <p className="mt-1 flex items-center gap-1 font-mono text-[10px] text-cyan">
+                            <span>⤢</span> enlarge
                           </p>
                         </div>
                       </div>
@@ -185,15 +178,18 @@ export default function Flags() {
                   alt={`${current.title} — ${current.place} place certificate`}
                   className="mx-auto max-h-[70vh] w-auto rounded-md"
                 />
-                <div className="mt-3 flex items-center justify-between px-1">
+                <div className="mt-3 flex items-start justify-between gap-4 px-1">
                   <div>
                     <p className="text-base font-semibold text-ink">{current.title}</p>
                     <p className="font-mono text-sm text-ink-mut">
                       {current.place} · {current.where}
                       {current.date ? ` · ${current.date}` : ''}
                     </p>
+                    {current.note && (
+                      <p className="mt-2 max-w-md font-mono text-sm italic text-ink-mut">“{current.note}”</p>
+                    )}
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-sm">
+                  <div className="flex flex-none items-center gap-2 font-mono text-sm">
                     <button
                       onClick={() => move(-1)}
                       className="rounded border border-base-700 px-2 py-1 text-ink-mut transition hover:border-cyan/50 hover:text-cyan"
