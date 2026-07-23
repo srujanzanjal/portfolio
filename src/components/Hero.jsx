@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { profile, stats } from '../data'
-import { CountUp, Cursor, Typewriter, TrafficDots } from './primitives'
+import { CountUp, Cursor, Typewriter } from './primitives'
 import ColorBends from './ColorBends'
+import GazeCard from './GazeCard'
 
 export default function Hero({ onOpenPalette }) {
   const ref = useRef(null)
@@ -79,31 +80,14 @@ export default function Hero({ onOpenPalette }) {
             </div>
           </div>
 
-          {/* Right: terminal id card */}
+          {/* Right: gaze-tracking photo card — eyes follow the pointer */}
           <motion.div
             initial={{ opacity: 0, y: 24, rotateX: 8 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ delay: 0.35, duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-            className="term scanline"
             style={{ perspective: 1000 }}
           >
-            <div className="term-bar">
-              <TrafficDots />
-              <span className="ml-2 font-mono text-xs text-ink-faint">~/id_srujan.json</span>
-            </div>
-            <pre className="whitespace-pre-wrap break-words p-5 font-mono text-sm leading-relaxed text-ink-mut">
-{`{
-  `}<span className="text-cyan">"handle"</span>{`: `}<span className="text-flag">"@srujanzanjal"</span>{`,
-  `}<span className="text-cyan">"role"</span>{`: `}<span className="text-flag">"CTF player / builder"</span>{`,
-  `}<span className="text-cyan">"now"</span>{`: `}<span className="text-flag">"Intern @ Infocepts"</span>{`,
-  `}<span className="text-cyan">"focus"</span>{`: [
-    `}<span className="text-ink">"AI/RAG"</span>{`,
-    `}<span className="text-ink">"full-stack"</span>{`,
-    `}<span className="text-ink">"security"</span>{`
-  ],
-  `}<span className="text-cyan">"motto"</span>{`: `}<span className="text-flag">"break it, then build it right"</span>{`
-}`}
-            </pre>
+            <GazeCard className="scanline mx-auto max-w-sm" />
           </motion.div>
         </div>
 

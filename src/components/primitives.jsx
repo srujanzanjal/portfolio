@@ -64,14 +64,3 @@ export function Typewriter({ text, speed = 42, className = '', onDone }) {
 export function Cursor({ className = '' }) {
   return <span className={`inline-block w-[0.55ch] bg-cyan animate-blink ${className}`}>&nbsp;</span>
 }
-
-/** macOS-style window traffic-light dots. */
-export function TrafficDots() {
-  return (
-    <div className="flex gap-2">
-      <span className="dot bg-[#ff5f57]" />
-      <span className="dot bg-[#febc2e]" />
-      <span className="dot bg-[#28c840]" />
-    </div>
-  )
-}
