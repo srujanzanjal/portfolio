@@ -91,12 +91,16 @@ export default function Hero({ onOpenPalette }) {
               <TrafficDots />
               <span className="ml-2 font-mono text-xs text-ink-faint">~/id_srujan.json</span>
             </div>
-            <pre className="overflow-x-auto p-5 font-mono text-sm leading-relaxed text-ink-mut sm:text-base">
+            <pre className="whitespace-pre-wrap break-words p-5 font-mono text-sm leading-relaxed text-ink-mut">
 {`{
   `}<span className="text-cyan">"handle"</span>{`: `}<span className="text-flag">"@srujanzanjal"</span>{`,
   `}<span className="text-cyan">"role"</span>{`: `}<span className="text-flag">"CTF player / builder"</span>{`,
   `}<span className="text-cyan">"now"</span>{`: `}<span className="text-flag">"Intern @ Infocepts"</span>{`,
-  `}<span className="text-cyan">"focus"</span>{`: [`}<span className="text-ink">"security"</span>, <span className="text-ink">"AI/RAG"</span>, <span className="text-ink">"full-stack"</span>{`],
+  `}<span className="text-cyan">"focus"</span>{`: [
+    `}<span className="text-ink">"security"</span>{`,
+    `}<span className="text-ink">"AI/RAG"</span>{`,
+    `}<span className="text-ink">"full-stack"</span>{`
+  ],
   `}<span className="text-cyan">"motto"</span>{`: `}<span className="text-flag">"break it, then build it right"</span>{`
 }`}
             </pre>
