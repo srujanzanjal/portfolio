@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { profile, stats } from '../data'
 import { CountUp, Cursor, Typewriter, TrafficDots } from './primitives'
-import SilkAurora from './SilkAurora'
+import ColorBends from './ColorBends'
 
 export default function Hero({ onOpenPalette }) {
   const ref = useRef(null)
@@ -13,16 +13,15 @@ export default function Hero({ onOpenPalette }) {
 
   return (
     <section ref={ref} id="home" className="relative flex min-h-[100svh] items-center pt-24">
-      {/* animated silk-aurora shader backdrop, fades out toward the bottom */}
+      {/* animated color-bends shader backdrop, fades at top and bottom */}
       <div
         className="absolute inset-0 z-0"
         style={{
-          maskImage: 'linear-gradient(to bottom, #000 55%, transparent 92%)',
-          WebkitMaskImage: 'linear-gradient(to bottom, #000 55%, transparent 92%)',
+          maskImage: 'linear-gradient(to bottom, transparent 0%, #000 14%, #000 55%, transparent 92%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #000 14%, #000 55%, transparent 92%)',
         }}
       >
-        <SilkAurora />
-        <div className="absolute inset-0 bg-base-950/60" />
+        <ColorBends />
       </div>
       <motion.div style={{ y, opacity }} className="container-x relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
