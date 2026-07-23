@@ -11,7 +11,7 @@ export const profile = {
   email: 'zanjalsrujan94@gmail.com',
   phone: '+91-9175243234',
   summary:
-    "3rd-year CS Engineering student who lives at the intersection of offense and creation: winning national CTFs by breaking things, then building production-grade AI and full-stack systems that solve real problems. Currently building an enterprise ESG SaaS platform with a RAG-based AI Copilot at Infocepts.",
+    "Final year CSE student who lives at the intersection of offense and creation: winning national CTFs by breaking things, then building production-grade AI and full-stack systems that solve real problems. Currently building an enterprise ESG SaaS platform with a RAG-based AI Copilot at Infocepts.",
   socials: [
     { label: 'GitHub', handle: 'github.com/srujanzanjal', href: 'https://github.com/srujanzanjal' },
     { label: 'LinkedIn', handle: 'in/srujan-zanjal', href: 'https://www.linkedin.com/in/srujan-zanjal-42868b1b2/' },
@@ -20,10 +20,10 @@ export const profile = {
 }
 
 export const stats = [
-  { value: 11, suffix: '×', label: 'CTF flags captured' },
-  { value: 6, suffix: '×', label: 'Hackathon wins' },
+  { value: 18, suffix: '×', label: 'Podium finishes' },
+  { value: 10, suffix: '×', label: 'First-place wins' },
   { value: 150, suffix: '+', label: 'Students led @ ACM' },
-  { value: 30, suffix: '+', label: 'Table PostgreSQL schemas shipped' },
+  { value: 30, suffix: '+', label: 'PostgreSQL tables shipped' },
 ]
 
 export const experience = [
@@ -95,19 +95,30 @@ export const projects = [
   },
 ]
 
-// The signature section — the wins. Sorted by prestige/recency.
+// The signature section — every entry verified against an actual certificate.
+// Sorted by prestige (1st → 2nd → 3rd). `cert` = source file (for the proof gallery).
 export const flags = [
-  { title: 'AXIS’26 × SHELL CTF', place: '1st', where: 'VNIT — National level', cat: 'CTF', note: 'Clutch OSINT solve with 6 minutes left.' },
-  { title: 'COLOSSEUM 14.0', place: '1st', where: 'RCOEM Nagpur', cat: 'CTF' },
-  { title: 'Technosav’24 — HACKTRICKS', place: '1st', where: 'SVPCET', cat: 'CTF' },
-  { title: 'Techfest — CoDecode', place: '1st', where: 'IIT Bombay (Nagpur Zonal)', cat: 'CP' },
-  { title: 'Avishkar 2025', place: '1st', where: 'GH Raisoni College', cat: 'CP', note: 'Incl. a blind-coding round.' },
-  { title: 'TATR × BIT Hackathon', place: '1st', where: 'Wildlife Conservation Tech', cat: 'Hackathon' },
-  { title: 'CYGNUS 2025', place: '1st', where: 'IEEE CS GHRCE', cat: 'Hackathon' },
-  { title: 'Technex 2K25', place: '2nd', where: 'SVPCET · 24-hour', cat: 'Hackathon', note: 'Built SiteSage under sleep deprivation.' },
-  { title: 'TechSprint 2026', place: '2nd', where: 'GDGOC RBU', cat: 'Hackathon' },
-  { title: 'EncipherX 3.0', place: '3rd', where: 'Technex 2025, SVPCET', cat: 'CTF' },
-  { title: 'Pentest Showdown', place: '3rd', where: 'Technavya 2025, GLA University', cat: 'CTF' },
+  // ── First place ──
+  { title: 'AXIS’26 × SHELL CTF', place: '1st', where: 'VNIT, Nagpur — National', cat: 'CTF', date: 'Apr 2026', note: 'Clutch OSINT solve with 6 minutes left.', cert: 'AXIS26_VNIT_first.jpg' },
+  { title: 'COLOSSEUM 14.0 CTF', place: '1st', where: 'RCOEM, Nagpur — National', cat: 'CTF', date: 'Apr 2024', cert: 'RCOEM_colosseum_first.jpg' },
+  { title: 'Sudhee 2025 CTF', place: '1st', where: 'CBIT, Hyderabad — National', cat: 'CTF', date: 'Mar 2025', cert: 'CBIT_hyderabad_first.jpg' },
+  { title: 'Upsurge 2K25 CTF', place: '1st', where: 'YCCE, Nagpur', cat: 'CTF', date: '2025', cert: 'YCCE_upsurge_first.jpg' },
+  { title: 'HACKTRICKS — Technosav’24', place: '1st', where: 'SVPCET, Nagpur', cat: 'CTF', date: 'Oct 2024', cert: 'hacktricks_first.jpg' },
+  { title: 'Arbitox Online CTF', place: '1st', where: 'Cynux Era × Arbito', cat: 'CTF', date: 'Dec 2025', cert: 'arbitox_first.jpg' },
+  { title: 'CoDecode — Techfest', place: '1st', where: 'IIT Bombay (Nagpur Zonal)', cat: 'CP', date: 'Dec 2024', cert: 'codecode_first.jpg' },
+  { title: 'Avishkar 2025', place: '1st', where: 'GH Raisoni University', cat: 'CP', date: 'Mar 2025', note: 'Incl. a blind-coding round.', cert: 'raisoni_first.jpg' },
+  { title: 'TATR × BIT Hackathon', place: '1st', where: 'Tadoba Tiger Reserve × BIT', cat: 'Hackathon', date: '2024', note: 'Wildlife-conservation tech.', cert: 'tadoba_first.jpg' },
+  { title: 'CYGNUS 2025 Hackathon', place: '1st', where: 'IEEE CS, GHRCE', cat: 'Hackathon', date: 'Sep 2025', cert: 'cygnus_first.jpg' },
+  // ── Second place ──
+  { title: 'Technex Hackathon', place: '2nd', where: 'SVPCET, Nagpur', cat: 'Hackathon', date: 'Dec 2025', note: 'Built SiteSage under sleep deprivation.', cert: 'svpcet_second.jpg' },
+  { title: 'TechSprint Hackathon', place: '2nd', where: 'GDG On-Campus, RBU', cat: 'Hackathon', date: 'Jan 2026', cert: 'RBU_techsprint_second.jpg' },
+  { title: 'Krutiverse — TECH-KRUTI 2K25', place: '2nd', where: 'TGPCET — Ciphertext hunt', cat: 'CTF', date: 'Mar 2025', cert: 'TGPCET_krutiverse_second.jpg' },
+  // ── Third place ──
+  { title: 'EncipherX 3.0', place: '3rd', where: 'SVPCET (Technex)', cat: 'CTF', date: 'Jan 2025', cert: 'encipherX_third.jpg' },
+  { title: 'Pentest Showdown', place: '3rd', where: 'GLA University, Mathura', cat: 'CTF', date: 'Feb 2025', cert: 'GLA_mathura_third.jpg' },
+  { title: 'The Hackers Meetup CTF', place: '3rd', where: 'THM Nagpur × Comexpo', cat: 'CTF', date: 'Jun 2024', cert: 'THM_third.jpg' },
+  { title: 'Compufest 2K25 — Versus Coding', place: '3rd', where: 'YCCE, Nagpur', cat: 'CP', date: 'Aug 2025', cert: 'compufest_third.jpg' },
+  { title: 'Techtantra 2K25', place: '3rd', where: 'TGPCET — National', cat: 'Hackathon', date: 'Mar 2025', cert: 'TGPCET_techtantra_third.jpg' },
 ]
 
 export const skills = [

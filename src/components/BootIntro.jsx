@@ -6,7 +6,7 @@ const LINES = [
   { t: '> whoami', d: 500 },
   { t: '  srujan_zanjal', d: 300, accent: true },
   { t: '> loading modules: [offense] [ai] [full-stack]', d: 450 },
-  { t: '> flags captured … 11  ✓', d: 350, flag: true },
+  { t: '> flags captured … 18  ✓', d: 350, flag: true },
   { t: '> access granted. welcome.', d: 400, accent: true },
 ]
 
@@ -15,9 +15,9 @@ export default function BootIntro({ onDone }) {
   const [gone, setGone] = useState(false)
 
   useEffect(() => {
-    // Respect reduced motion + let returning visitors skip instantly.
+    // Respect reduced motion, but otherwise replay the boot sequence on every load.
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce || sessionStorage.getItem('booted')) {
+    if (reduce) {
       finish()
       return
     }
@@ -43,7 +43,6 @@ export default function BootIntro({ onDone }) {
   }, [])
 
   function finish() {
-    sessionStorage.setItem('booted', '1')
     setGone(true)
     setTimeout(onDone, 650)
   }
