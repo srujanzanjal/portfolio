@@ -19,8 +19,8 @@ function ProjectCard({ p, i }) {
             <p className="mono-label mb-2" style={{ color: isFlag ? 'rgba(0,255,156,.8)' : undefined }}>
               {String(i + 1).padStart(2, '0')} · {p.date}
             </p>
-            <h3 className="text-xl font-bold text-ink">{p.name}</h3>
-            <p className="mt-0.5 font-mono text-xs text-ink-mut">{p.kind}</p>
+            <h3 className="text-2xl font-bold text-ink">{p.name}</h3>
+            <p className="mt-0.5 font-mono text-sm text-ink-mut">{p.kind}</p>
           </div>
           <span
             className={`flex h-9 w-9 flex-none items-center justify-center rounded-lg border font-mono text-sm transition group-hover:rotate-12 ${
@@ -31,10 +31,10 @@ function ProjectCard({ p, i }) {
           </span>
         </div>
 
-        <p className="mt-4 text-sm leading-relaxed text-ink-mut">{p.blurb}</p>
+        <p className="mt-4 text-base leading-relaxed text-ink-mut">{p.blurb}</p>
 
         <div
-          className={`mt-4 inline-flex items-center gap-2 rounded-md border px-2.5 py-1 font-mono text-[11px] ${
+          className={`mt-4 inline-flex items-center gap-2 rounded-md border px-2.5 py-1 font-mono text-xs ${
             isFlag ? 'border-flag/30 bg-flag/5 text-flag' : 'border-cyan/30 bg-cyan/5 text-cyan'
           }`}
         >
@@ -43,7 +43,7 @@ function ProjectCard({ p, i }) {
 
         <div className="mt-5 flex flex-wrap gap-2 border-t border-base-700/60 pt-4">
           {p.tech.map((t) => (
-            <span key={t} className="font-mono text-[11px] text-ink-faint">
+            <span key={t} className="font-mono text-xs text-ink-faint">
               #{t.toLowerCase().replace(/\s+/g, '-')}
             </span>
           ))}
@@ -55,7 +55,7 @@ function ProjectCard({ p, i }) {
 
 export default function Projects() {
   return (
-    <Section id="projects" index="02" command="ls ~/projects --sort=impact" title="Things I've shipped">
+    <Section id="projects" index="02" command="ls ~/projects --sort=impact" title="Things I've shipped" subtitle="Projects">
       <div className="grid gap-5 sm:grid-cols-2">
         {projects.map((p, i) => (
           <ProjectCard key={p.name} p={p} i={i} />

@@ -39,18 +39,18 @@ export default function Flags() {
   const current = active === null ? null : shown[active]
 
   return (
-    <Section id="flags" index="03" command="flags --captured --sort=prestige" title="Flags captured">
+    <Section id="flags" index="03" command="flags --captured --sort=prestige" title="Flags captured" subtitle="Wins & Achievements">
       <Reveal>
         <div className="mb-8 flex flex-wrap items-center gap-4">
-          <p className="max-w-2xl text-sm leading-relaxed text-ink-mut">
+          <p className="max-w-2xl text-base leading-relaxed text-ink-mut">
             {flags.length} podium finishes across national CTFs, hackathons and competitive programming —{' '}
             <span className="text-flag">{firsts} of them first place.</span> Every one is
-            certificate-backed — <span className="text-cyan">click any card to see the proof.</span>
+            certificate-backed — <span className="text-cyan">hover a card to flip it and see the proof.</span>
           </p>
         </div>
 
         {/* filter tabs */}
-        <div className="mb-8 inline-flex flex-wrap gap-1 rounded-lg border border-base-700 bg-base-900/60 p-1 font-mono text-xs">
+        <div className="mb-8 inline-flex flex-wrap gap-1 rounded-lg border border-base-700 bg-base-900/60 p-1 font-mono text-sm">
           {CATS.map((c) => (
             <button
               key={c}
@@ -68,7 +68,7 @@ export default function Flags() {
         </div>
       </Reveal>
 
-      <motion.div layout className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {shown.map((f, i) => {
             const s = placeStyle(f.place)
@@ -82,30 +82,63 @@ export default function Flags() {
                 transition={{ duration: 0.28, delay: (i % 6) * 0.03 }}
                 whileHover={{ y: -3 }}
                 onClick={() => f.cert && setActive(i)}
-                className={`card group p-5 ring-1 ${s.ring} ${f.cert ? 'cursor-pointer' : ''}`}
+                className={`group ${f.cert ? 'cursor-pointer' : ''}`}
               >
-                <div className="flex items-center justify-between">
-                  <span className={`font-mono text-2xl font-bold ${s.text} ${s.glow}`}>{f.place}</span>
-                  <span className="text-2xl" aria-hidden>{s.medal}</span>
-                </div>
-                <h3 className="mt-3 text-sm font-semibold leading-snug text-ink">{f.title}</h3>
-                <p className="mt-1 text-xs text-ink-mut">{f.where}</p>
-                <div className="mt-3 flex items-center justify-between gap-2">
-                  <span className="rounded border border-base-700 bg-base-900/60 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-faint">
-                    {CAT_LABEL[f.cat]}
-                  </span>
-                  {f.date && <span className="font-mono text-[10px] text-ink-faint">{f.date}</span>}
-                </div>
-                {f.note && (
-                  <p className="mt-3 border-t border-base-700/60 pt-3 font-mono text-[11px] italic text-ink-mut">
-                    “{f.note}”
-                  </p>
-                )}
-                {f.cert && (
-                  <div className="mt-3 flex items-center gap-1.5 font-mono text-[11px] text-cyan/70 transition group-hover:text-cyan">
-                    <span>⤢</span> view certificate
+                {/* flip stage */}
+                <div className="relative h-72 sm:h-80 [perspective:1200px]">
+                  <div
+                    className={`relative h-full w-full transition-transform duration-500 ease-out [transform-style:preserve-3d] ${
+                      f.cert ? 'group-hover:[transform:rotateY(180deg)]' : ''
+                    }`}
+                  >
+                    {/* FRONT */}
+                    <div
+                      className={`card absolute inset-0 overflow-hidden p-5 ring-1 ${s.ring} [backface-visibility:hidden]`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className={`font-mono text-3xl font-bold ${s.text} ${s.glow}`}>{f.place}</span>
+                        <span className="text-2xl" aria-hidden>{s.medal}</span>
+                      </div>
+                      <h3 className="mt-3 text-base font-semibold leading-snug text-ink">{f.title}</h3>
+                      <p className="mt-1 text-sm text-ink-mut">{f.where}</p>
+                      <div className="mt-3 flex items-center justify-between gap-2">
+                        <span className="rounded border border-base-700 bg-base-900/60 px-2 py-0.5 font-mono text-xs uppercase tracking-wider text-ink-faint">
+                          {CAT_LABEL[f.cat]}
+                        </span>
+                        {f.date && <span className="font-mono text-xs text-ink-faint">{f.date}</span>}
+                      </div>
+                      {f.note && (
+                        <p className="mt-3 border-t border-base-700/60 pt-3 font-mono text-xs italic text-ink-mut">
+                          “{f.note}”
+                        </p>
+                      )}
+                      {f.cert && (
+                        <div className="mt-3 flex items-center gap-1.5 font-mono text-xs text-cyan/70 transition group-hover:text-cyan">
+                          <span>⟲</span> hover to flip
+                        </div>
+                      )}
+                    </div>
+
+                    {/* BACK — certificate preview */}
+                    {f.cert && (
+                      <div className="absolute inset-0 overflow-hidden rounded-xl ring-1 ring-cyan/50 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                        <img
+                          src={`/certs/${f.cert}`}
+                          alt={`${f.title} certificate preview`}
+                          className="h-full w-full bg-base-900 object-cover object-top"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-base-950/95 via-base-950/25 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 p-4">
+                          <p className="text-sm font-semibold text-white">{f.title}</p>
+                          <p className="mt-1.5 flex items-center gap-1.5 font-mono text-xs text-cyan">
+                            <span>⤢</span> click to enlarge
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </motion.article>
             )
           })}
@@ -136,12 +169,12 @@ export default function Flags() {
                   <span className="dot bg-[#febc2e]" />
                   <span className="dot bg-[#28c840]" />
                 </div>
-                <span className="ml-2 truncate font-mono text-xs text-ink-faint">
+                <span className="ml-2 truncate font-mono text-sm text-ink-faint">
                   ~/certs/{current.cert}
                 </span>
                 <button
                   onClick={close}
-                  className="ml-auto font-mono text-xs text-ink-mut transition hover:text-cyan"
+                  className="ml-auto font-mono text-sm text-ink-mut transition hover:text-cyan"
                 >
                   close [esc]
                 </button>
@@ -154,13 +187,13 @@ export default function Flags() {
                 />
                 <div className="mt-3 flex items-center justify-between px-1">
                   <div>
-                    <p className="text-sm font-semibold text-ink">{current.title}</p>
-                    <p className="font-mono text-xs text-ink-mut">
+                    <p className="text-base font-semibold text-ink">{current.title}</p>
+                    <p className="font-mono text-sm text-ink-mut">
                       {current.place} · {current.where}
                       {current.date ? ` · ${current.date}` : ''}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-xs">
+                  <div className="flex items-center gap-2 font-mono text-sm">
                     <button
                       onClick={() => move(-1)}
                       className="rounded border border-base-700 px-2 py-1 text-ink-mut transition hover:border-cyan/50 hover:text-cyan"

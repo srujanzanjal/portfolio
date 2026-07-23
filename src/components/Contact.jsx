@@ -4,7 +4,7 @@ import { profile } from '../data'
 
 export default function Contact() {
   return (
-    <Section id="contact" index="05" command="connect --with srujan" title="Let's build something">
+    <Section id="contact" index="05" command="connect --with srujan" title="Let's build something" subtitle="Contact">
       <div className="grid gap-8 lg:grid-cols-[1.1fr_.9fr]">
         <Reveal>
           <div>
@@ -19,10 +19,10 @@ export default function Contact() {
               <span>./send-message</span>
               <span className="transition group-hover:translate-x-1">→</span>
             </a>
-            <p className="mt-6 font-mono text-sm text-ink-mut">
+            <p className="mt-6 font-mono text-base text-ink-mut">
               <span className="text-flag">$</span> {profile.email}
             </p>
-            <p className="mt-1 font-mono text-sm text-ink-faint">{profile.location}</p>
+            <p className="mt-1 font-mono text-base text-ink-faint">{profile.location}</p>
           </div>
         </Reveal>
 
@@ -38,9 +38,9 @@ export default function Contact() {
               >
                 <span className="flex items-center gap-3">
                   <span className="font-mono text-cyan transition group-hover:text-flag">↗</span>
-                  <span className="text-sm text-ink">{s.label}</span>
+                  <span className="text-base text-ink">{s.label}</span>
                 </span>
-                <span className="font-mono text-xs text-ink-faint transition group-hover:text-ink-mut">
+                <span className="font-mono text-sm text-ink-faint transition group-hover:text-ink-mut">
                   {s.handle}
                 </span>
               </a>

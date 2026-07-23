@@ -4,7 +4,7 @@ import { experience, education } from '../data'
 
 export default function Experience() {
   return (
-    <Section id="experience" index="01" command="cat ./experience.log" title="Where I've been building">
+    <Section id="experience" index="01" command="cat ./experience.log" title="Where I've been building" subtitle="Experience">
       <div className="relative">
         {/* timeline spine */}
         <div className="absolute left-[7px] top-2 bottom-2 hidden w-px bg-gradient-to-b from-cyan/50 via-base-600 to-transparent sm:block" />
@@ -17,23 +17,23 @@ export default function Experience() {
                 </span>
                 <article className="card p-6">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="text-lg font-semibold text-ink">
+                    <h3 className="text-xl font-semibold text-ink">
                       {job.role} <span className="text-cyan">@ {job.company}</span>
                     </h3>
-                    <span className="font-mono text-xs text-ink-faint">{job.period}</span>
+                    <span className="font-mono text-sm text-ink-faint">{job.period}</span>
                   </div>
-                  <p className="mt-0.5 font-mono text-xs text-ink-faint">{job.location}</p>
+                  <p className="mt-0.5 font-mono text-sm text-ink-faint">{job.location}</p>
                   <ul className="mt-4 space-y-2.5">
                     {job.points.map((p, j) => (
-                      <li key={j} className="flex gap-3 text-sm leading-relaxed text-ink-mut">
-                        <span className="mt-2 h-1 w-1 flex-none rounded-full bg-cyan/70" />
+                      <li key={j} className="flex gap-3 text-base leading-relaxed text-ink-mut">
+                        <span className="mt-2.5 h-1 w-1 flex-none rounded-full bg-cyan/70" />
                         <span>{p}</span>
                       </li>
                     ))}
                   </ul>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {job.tags.map((t) => (
-                      <span key={t} className="rounded-md border border-base-700 bg-base-900/60 px-2 py-1 font-mono text-[11px] text-ink-mut">
+                      <span key={t} className="rounded-md border border-base-700 bg-base-900/60 px-2 py-1 font-mono text-xs text-ink-mut">
                         {t}
                       </span>
                     ))}
@@ -51,9 +51,9 @@ export default function Experience() {
           {education.map((e) => (
             <div key={e.school} className="card p-5">
               <p className="mono-label mb-2">edu</p>
-              <h4 className="text-sm font-semibold text-ink">{e.degree}</h4>
-              <p className="mt-1 text-sm text-ink-mut">{e.school}</p>
-              <p className="mt-1 font-mono text-xs text-ink-faint">{e.period}</p>
+              <h4 className="text-base font-semibold text-ink">{e.degree}</h4>
+              <p className="mt-1 text-base text-ink-mut">{e.school}</p>
+              <p className="mt-1 font-mono text-sm text-ink-faint">{e.period}</p>
             </div>
           ))}
         </div>

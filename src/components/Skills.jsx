@@ -4,7 +4,7 @@ import { skills, profile } from '../data'
 
 export default function Skills() {
   return (
-    <Section id="skills" index="04" command="cat ./stack.txt" title="The stack">
+    <Section id="skills" index="04" command="cat ./stack.txt" title="The stack" subtitle="Skills">
       <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
         <Reveal>
           <div className="term scanline h-full">
@@ -14,9 +14,9 @@ export default function Skills() {
                 <span className="dot bg-[#febc2e]" />
                 <span className="dot bg-[#28c840]" />
               </div>
-              <span className="ml-2 font-mono text-xs text-ink-faint">~/about.md</span>
+              <span className="ml-2 font-mono text-sm text-ink-faint">~/about.md</span>
             </div>
-            <div className="p-6 font-mono text-sm leading-relaxed text-ink-mut">
+            <div className="p-6 font-mono text-base leading-relaxed text-ink-mut">
               <p><span className="text-flag"># </span><span className="text-ink">whoami</span></p>
               <p className="mt-3">{profile.summary}</p>
               <p className="mt-4 text-cyan">$ echo $PHILOSOPHY</p>
@@ -36,7 +36,7 @@ export default function Skills() {
                   {s.items.map((it) => (
                     <span
                       key={it}
-                      className="rounded-md border border-base-700 bg-base-900/60 px-2.5 py-1 text-xs text-ink transition hover:border-cyan/40 hover:text-cyan"
+                      className="rounded-md border border-base-700 bg-base-900/60 px-2.5 py-1.5 text-sm text-ink transition hover:border-cyan/40 hover:text-cyan"
                     >
                       {it}
                     </span>

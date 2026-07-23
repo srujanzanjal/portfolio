@@ -91,7 +91,7 @@ export default function Hero({ onOpenPalette }) {
               <TrafficDots />
               <span className="ml-2 font-mono text-xs text-ink-faint">~/id_srujan.json</span>
             </div>
-            <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-relaxed text-ink-mut">
+            <pre className="overflow-x-auto p-5 font-mono text-sm leading-relaxed text-ink-mut sm:text-base">
 {`{
   `}<span className="text-cyan">"handle"</span>{`: `}<span className="text-flag">"@srujanzanjal"</span>{`,
   `}<span className="text-cyan">"role"</span>{`: `}<span className="text-flag">"CTF player / builder"</span>{`,
@@ -110,7 +110,7 @@ export default function Hero({ onOpenPalette }) {
               <div className="font-mono text-3xl font-bold text-cyan glow-text sm:text-4xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
-              <div className="mt-1 text-xs text-ink-mut">{s.label}</div>
+              <div className="mt-1 text-sm text-ink-mut">{s.label}</div>
             </div>
           ))}
         </div>
