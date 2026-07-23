@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { profile, stats } from '../data'
 import { CountUp, Cursor, Typewriter, TrafficDots } from './primitives'
-import ParticleField from './ParticleField'
+import SilkAurora from './SilkAurora'
 
 export default function Hero({ onOpenPalette }) {
   const ref = useRef(null)
@@ -13,7 +13,7 @@ export default function Hero({ onOpenPalette }) {
 
   return (
     <section ref={ref} id="home" className="relative flex min-h-[100svh] items-center pt-24">
-      {/* animated particle-network backdrop, fades out toward the bottom */}
+      {/* animated silk-aurora shader backdrop, fades out toward the bottom */}
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -21,7 +21,8 @@ export default function Hero({ onOpenPalette }) {
           WebkitMaskImage: 'linear-gradient(to bottom, #000 55%, transparent 92%)',
         }}
       >
-        <ParticleField />
+        <SilkAurora />
+        <div className="absolute inset-0 bg-base-950/60" />
       </div>
       <motion.div style={{ y, opacity }} className="container-x relative z-10">
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
